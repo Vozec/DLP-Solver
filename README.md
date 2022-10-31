@@ -11,7 +11,10 @@ We search a ``x`` satisfying ``h=g^x mod p`` for given h,g,p
 - Sympy Solver
 
 # Usage:
-
 ```bash
 python3 DLP\ Solver.py -g ... -p ... -h ...
 ```
+
+#Example:
+
+![Alt text](./images/example.png)
