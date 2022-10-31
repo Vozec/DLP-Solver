@@ -29,27 +29,31 @@ def crt(Ni, Mi):
 	return X
 
 def run(stop,name,g,h,p,all_factor):
-	x = []
+	try:
+		x = []
 
-	for factor in all_factor:
-		if(stop.is_cancelled):	return None	 
-
-		res = {}
-		for _ in range(factor[0]):
+		for factor in all_factor:
 			if(stop.is_cancelled):	return None	 
-			res[ pow(g, ((p-1)//factor[0])*_, p) ] = _
-	   
-		c_i,h_ = [],h
-		for _ in range(factor[1]):
-			if(stop.is_cancelled):	return None	 
-			tp = pow( h_, (p-1) // (factor[0] ** (_+1)) , p )						
-			c_i.append(res[tp])			
-			a = pow(g, (res[tp] * (factor[0] ** (_))), p)
-			a = modInv(a, p)
-			h_ *= a
-			h_ %= p
- 
-		x.append( sum([ (factor[0] ** _) * c_i[_] for _ in range(factor[1])]) )
 
-	factors = [ x[0] ** x[1] for x in all_factor]
-	return found_x(stop,name,crt(x,  factors))
+			res = {}
+			for _ in range(factor[0]):
+				if(stop.is_cancelled):	return None	 
+				res[ pow(g, ((p-1)//factor[0])*_, p) ] = _
+		   
+			c_i,h_ = [],h
+			for _ in range(factor[1]):
+				if(stop.is_cancelled):	return None	 
+				tp = pow( h_, (p-1) // (factor[0] ** (_+1)) , p )
+				c_i.append(res[tp])			
+				a = pow(g, (res[tp] * (factor[0] ** (_))), p)
+				a = modInv(a, p)
+				h_ *= a
+				h_ %= p
+	 
+			x.append( sum([ (factor[0] ** _) * c_i[_] for _ in range(factor[1])]) )
+
+		factors = [ x[0] ** x[1] for x in all_factor]
+		return found_x(stop,name,crt(x,  factors))
+		
+	except:
+		stop.cancel()
