@@ -28,7 +28,7 @@ def main(args):
 	stopper = thread_stop()
 
 	for name,algo in all_algo.items():		
-		logger('[+] Starting %s attack '%name,'info',0,0)
+		logger('[+] Starting %s algorithm '%name,'info',0,0)
 		t1 = threading.Thread(target=algo.run, args = (stopper,name,g,h,p,factors))
 		all_thread.append(t1)
 
