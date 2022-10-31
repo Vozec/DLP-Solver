@@ -18,3 +18,5 @@ python3 DLP\ Solver.py -g ... -p ... -h ...
 #Example:
 
 ![Alt text](./images/example.png)
+
+*This tools was inspired by many writings/codes of other people from previous CTF Writeup*
